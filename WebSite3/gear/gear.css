@@ -1,0 +1,157 @@
+﻿@-webkit-keyframes ckw {
+    0% {
+        /*-moz-transform: rotate(0deg);*/
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        /*-moz-transform: rotate(360deg);*/
+        -webkit-transform: rotate(360deg);
+    }
+}
+@-moz-keyframes ckw {
+    0% {
+        /*-moz-transform: rotate(0deg);*/
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        /*-moz-transform: rotate(360deg);*/
+        -webkit-transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes cckw {
+    0% {
+        /*-moz-transform: rotate(360deg);*/
+        -webkit-transform: rotate(360deg);
+    }
+    100% {
+        /*-moz-transform: rotate(0deg);*/
+        -webkit-transform: rotate(0deg);
+    }
+}
+@-moz-keyframes cckw {
+    0% {
+        /*-moz-transform: rotate(360deg);*/
+        -webkit-transform: rotate(360deg);
+    }
+    100% {
+        /*-moz-transform: rotate(0deg);*/
+        -webkit-transform: rotate(0deg);
+    }
+}
+
+/* gears */
+.gear {
+    z-index:300;
+    float: none;
+    position: absolute;
+    text-align: center;
+
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-direction: normal;
+    -moz-animation-delay: 0;
+    -moz-animation-play-state: running;
+    -moz-animation-fill-mode: forwards;
+
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: normal;
+    -webkit-animation-delay: 0;
+    -webkit-animation-play-state: running;
+    -webkit-animation-fill-mode: forwards;
+}
+#gear1 {
+    background: url('../IMG/atlantis_gear_01.png') no-repeat 0 0;
+    height: 220px;
+    width: 220px;
+    left:55px;
+    bottom:55px;
+    opacity:0.5;
+    /*-moz-animation-name: ckw;
+    -moz-animation-duration: 10s;*/
+
+    -webkit-animation-name: ckw;
+    -webkit-animation-duration: 18s;
+}
+#gear2 {
+    background: url('../IMG/atlantis_gear_02.png') no-repeat 0 0;
+    height: 188px;
+    width: 188px;
+    left:-60px;
+    bottom:60px;
+    opacity:0.8;
+    /*-moz-animation-name: ckw;
+    -moz-animation-duration: 8s;*/
+
+    -webkit-animation-name: ckw;
+    -webkit-animation-duration: 5s;
+}
+
+#gear3 {
+    background: url('../IMG/atlantis_gear_03.png') no-repeat 0 0;
+    height: 160px;
+    width: 160px;
+    left:-20px;
+    bottom:10px;
+    opacity:0.6;
+    /*-moz-animation-name: ckw;
+    -moz-animation-duration: 8s;*/
+
+    -webkit-animation-name: ckw;
+    -webkit-animation-duration: 7s;
+}
+#gear4 {
+    background: url('../IMG/atlantis_gear_04.png') no-repeat 0 0;
+    height: 120px;
+    width: 120px;
+    left:50px;
+    bottom:50px;
+    opacity:0.9;
+    /*-moz-animation-name: ckw;
+    -moz-animation-duration: 8s;*/
+
+    -webkit-animation-name: ckw;
+    -webkit-animation-duration: 10s;
+}
+
+#gear5 {
+    background: url('../IMG/atlantis_gear_05.png') no-repeat 0 0;
+    height: 100px;
+    width: 100px;
+    left:-50px;
+    bottom:-50px;
+    opacity:0.7;
+    /*-moz-animation-name: ckw;
+    -moz-animation-duration: 8s;*/
+
+    -webkit-animation-name: ckw;
+    -webkit-animation-duration: 5s;
+}
+
+#gear6 {
+    background: url('../IMG/atlantis_gear_01.png') no-repeat 0 0;
+    height: 220px;
+    width: 220px;
+    left:100px;
+    bottom:-90px;
+    opacity:0.9;
+    /*-moz-animation-name: ckw;
+    -moz-animation-duration: 10s;*/
+
+    -webkit-animation-name: ckw;
+    -webkit-animation-duration: 3s;
+}
+
+#gear7 {
+    background: url('../IMG/atlantis_gear_04.png') no-repeat 0 0;
+    height: 120px;
+    width: 120px;
+    left:40px;
+    bottom:-20px;
+    opacity:0.5;
+    /*-moz-animation-name: ckw;
+    -moz-animation-duration: 8s;*/
+
+    -webkit-animation-name: ckw;
+    -webkit-animation-duration: 12s;
+}

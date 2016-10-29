@@ -1,0 +1,160 @@
+html, body {   
+	width: 100%;   
+	height: 100%;   
+	font-family: "Helvetica Neue", Helvetica, sans-serif;   
+	color: #444;   
+	-webkit-font-smoothing: antialiased;    
+}
+
+#background-image {
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	background-image: url("../images/login-background.jpg");
+	background-repeat:no-repeat;
+	width: 100%;
+	height: 100%;
+	 -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+	-webkit-filter: blur(4px);
+	moz-filter: blur(4px);
+	-o-filter: blur(4px);
+	-ms-filter: blur(4px);
+	filter: blur(4px);
+}
+
+#container {
+    position: fixed;
+	z-index: 9999;
+    width: 340px;
+    height: 430px;
+    top: 40%;
+    left: 50%;
+    margin-top: -170px;
+    margin-left: -170px;
+	background: #fff;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+}
+
+#container2 {
+    position: relative;
+	z-index: 9999;
+    width: 540px;
+    height: 700px;
+    top: 100PX;
+    margin: auto;
+    margin-left: auto;
+	background: #fff;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+    text-align: center;
+    
+}
+
+#container img {
+	display: block;
+	margin-left:auto;
+	margin-right: auto;
+	margin-top: 10px;
+}
+
+#login_button {
+	background-color: #474645;
+	color: white;
+	padding-left: 10px;
+    margin: 10px;
+    margin-top: 12px;
+    margin-left: 18px;
+    width: 290px;
+    height: 35px;
+}
+
+#forgotpassword_button {
+	background-color: #474645;
+	color: white;
+	padding-left: 10px;
+    margin: 10px;
+    margin-top: 12px;
+    margin-left: 18px;
+    width: 290px;
+    height: 35px;
+}
+
+form {
+    margin: 0 auto;
+    margin-top: 20px;
+}
+form p {
+	text-align: center;
+}
+label {
+    color: #555;
+    display: inline-block;
+    margin-left: 18px;
+    padding-top: 10px;
+    font-size: 14px;
+}
+p a {
+    font-size: 11px;
+    color: #aaa;
+    float: right;
+    margin-top: -13px;
+    margin-right: 20px;
+}
+p a:hover {
+    color: #555;
+}
+input {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 12px;
+    outline: none;
+}
+input[type=text],
+input[type=password] {
+    color: #777;
+    padding-left: 10px;
+    margin: 10px;
+    margin-top: 12px;
+    margin-left: 18px;
+    width: 290px;
+    height: 35px;
+}
+#lower {
+    background: #fff;
+    width: 100%;
+    height: auto;
+    margin-top: 40px;
+}
+
+#lower p {
+	padding-left: 10px;
+	padding-top: 15px;
+    margin: 10px;
+    margin-top: 12px;
+    margin-left: 18px;
+
+}
+
+#register_button {
+	background-color: #474645;
+	color: white;
+	padding-left: 10px;
+    margin: 10px;
+    margin-top: auto;
+    margin-left: 18px;
+    width: 290px;
+    height: 35px;
+}
+
+.register_btn{
+    position: relative;
+    margin: auto;
+    margin-left: auto;
+    
+}

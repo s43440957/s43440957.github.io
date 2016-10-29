@@ -1,0 +1,426 @@
+﻿<!DOCTYPE html >
+<html>
+<head>
+ 
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>PHP/MySQL Example</title>
+    <link href="gear/gear.css" rel="stylesheet" />
+    <link href="buttonCSS.css" rel="stylesheet" />
+    <style type="text/css">
+        html {
+        overflow-y: hidden;
+        }
+        .button_1 {
+        background-color: #1f1f1f;
+        color: white;
+        font-family: 'Segoe WP';
+        font-size: 12pt;
+        font-weight: 200;
+        border: none;
+        }
+
+        .button_1:hover {s
+        background: #353535;
+        color: white;
+        font-family: 'Segoe WP';
+        font-size: 12pt;
+        font-weight: 200;
+        }
+
+        .float_button_library {
+        background-image:url(IMG/atlantis_flot_button_library.png);
+        border:none;
+        outline:none;
+        background-size:cover;
+        }
+
+        .float_button_explore {
+        border-radius: 0px;
+        background-image: url(IMG/atlantis_flot_button_explore.png);
+        border: none;
+        outline: none;
+        background-size: cover;
+        }
+
+        .float_button_explore:hover {
+        background-image: url(IMG/atlantis_flot_button_explore_hover.png);
+        }
+
+        .float_button_library:hover {
+        background-image: url(IMG/atlantis_flot_button_library_hover.png);
+        }
+        .float_button_quiz {
+        background-image: url(IMG/atlantis_flot_button_quiz.png);
+        border: none;
+        outline: none;
+        background-size: cover;
+        }
+
+        .float_button_quiz:hover {
+        background-image: url(IMG/atlantis_flot_button_quiz_hover.png);
+        }
+        .float_button_aboutus {
+        background-image: url(IMG/atlantis_flot_button_aboutus.png);
+        border: none;
+        outline: none;
+        background-size: cover;
+        }
+
+        .float_button_aboutus:hover {
+        background-image: url(IMG/atlantis_flot_button_aboutus_hover.png);
+        }
+</style>
+
+    <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQAuV0OwvC0eVylZ8yELYVJ5ndsCATY60"
+            type="text/javascript"></script>
+    <script type="text/javascript">
+    
+   
+    //<![CDATA[
+
+    var customIcons = {
+        icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png',
+        shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+    };
+
+    var map;
+    var infoWindow;
+    var australia = { lat: -27.9210555, lng: 133.247866 };
+    var gmarkers = [];
+
+
+    function load_map() {
+        // Create an array of styles.
+        var styles = [
+        {
+        stylers: [
+        { hue: "#0055ff" },
+        { "invert_lightness": true },
+        { saturation: -1000 },
+        { lightness: -30 }
+
+        ]
+        }, {
+        featureType: "road",
+        elementType: "geometry",
+        stylers: [
+        { lightness: 100 },
+        { visibility: "on" }
+        ]
+        }, {
+        featureType: "road",
+        elementType: "labels",
+        stylers: [
+        { visibility: "off" }
+        ]
+        }, {
+        featureType: "water",
+        stylers: [
+        {color:"#1f1f1f"},
+        { visibility: "on" },             
+        ]
+        }
+        ];
+
+        var citymap = {
+            Brisbane: {
+                center: { lat: -27.470125, lng: 153.021072 },
+                population: 2799988,
+
+            },
+            Sydney: {
+                center: { lat: -33.865143, lng: 151.209900 },
+                population: 840537
+            },
+            Melbourne: {
+                center: { lat: -37.8132, lng: 144.963 },
+                population: 3857799
+            },
+            Canberra: {
+                center: { lat: -35.282, lng: 149.1287 },
+                population: 603502
+            }
+        };
+ 
+        // Create a new StyledMapType object, passing it the array of styles,
+        // as well as the name to be displayed on the map type control.
+        var styledMap = new google.maps.StyledMapType(styles,
+          { name: "Styled Map" });
+
+         //Create a map object, and include the MapTypeId to add
+        // to the map type control.
+      
+        var mapOptions = {
+            mapTypeControlOptions: {
+                mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+            }
+        };
+        map = new google.maps.Map(document.getElementById('map'),{
+            center:new google.maps.LatLng(-27.9210555, 133.247866),
+            zoom: 5,
+            center: australia,
+            //mapTypeId: 'roadmap'
+
+        },
+          mapOptions);
+        map.mapTypes.set('map_style', styledMap);
+        map.setMapTypeId('map_style');
+
+
+            for (var city in citymap) {
+            // Add the circle for this city to the map.
+            var cityCircle = new google.maps.Circle({
+            strokeColor: '#8afff4',
+            clickable: true,
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#8afff4',
+            fillOpacity: 0.20,
+            map: map,
+            center: citymap[city].center,
+            radius: Math.sqrt(citymap[city].population) * 100
+            });
+            }
+
+            var beaches = [
+            ['Business', -33.890542, 151.274856, 4],
+            ['Sports', -33.923036, 151.259052, 5],
+            ['Entertainment', -34.028249, 151.157507, 3],
+            ['Culture', -33.80010128657071, 151.28747820854187, 2],
+            ['Life', -33.950198, 151.259302, 1]
+            ];
+
+            // Adds markers to the map.
+
+            // Marker sizes are expressed as a Size of X,Y where the origin of the image
+            // (0,0) is located in the top left of the image.
+
+            // Origins, anchor positions and coordinates of the marker increase in the X
+            // direction to the right and in the Y direction down.
+            var image1 = {
+            url: 'IMG/marker_business.png',
+            // This marker is 20 pixels wide by 32 pixels high.
+            size: new google.maps.Size(31, 36),
+            // The origin for this image is (0, 0).
+            origin: new google.maps.Point(0, 0),
+            // The anchor for this image is the base of the flagpole at (0, 32).
+            anchor: new google.maps.Point(0, 32)
+            };
+            var image2 = {
+            url: 'IMG/marker_sport.png',
+            // This marker is 20 pixels wide by 32 pixels high.
+            size: new google.maps.Size(31, 36),
+            // The origin for this image is (0, 0).
+            origin: new google.maps.Point(0, 0),
+            // The anchor for this image is the base of the flagpole at (0, 32).
+            anchor: new google.maps.Point(0, 32)
+            };
+
+            var image3 = {
+            url: 'IMG/marker_entertainment.png',
+            // This marker is 20 pixels wide by 32 pixels high.
+            size: new google.maps.Size(31, 36),
+            // The origin for this image is (0, 0).
+            origin: new google.maps.Point(0, 0),
+            // The anchor for this image is the base of the flagpole at (0, 32).
+            anchor: new google.maps.Point(0, 32)
+            };
+            var image4 = {
+            url: 'IMG/marker_culture.png',
+            // This marker is 20 pixels wide by 32 pixels high.
+            size: new google.maps.Size(31, 36),
+            // The origin for this image is (0, 0).
+            origin: new google.maps.Point(0, 0),
+            // The anchor for this image is the base of the flagpole at (0, 32).
+            anchor: new google.maps.Point(0, 32)
+            };
+
+            var image5 = {
+            url: 'IMG/marker_life.png',
+            // This marker is 20 pixels wide by 32 pixels high.
+            size: new google.maps.Size(31, 36),
+            // The origin for this image is (0, 0).
+            origin: new google.maps.Point(0, 0),
+            // The anchor for this image is the base of the flagpole at (0, 32).
+            anchor: new google.maps.Point(0, 32)
+            };
+            var image = [image1, image2, image3, image4, image5];
+            // Shapes define the clickable region of the icon. The type defines an HTML
+            // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+            // The final coordinate closes the poly by connecting to the first coordinate.
+            var shape = {
+            coords: [0, 0, 0, 35, 31, 36, 31, 0],
+            type: 'poly'
+            };
+  
+            var contentString1 = '<div id="content" >' +
+            '<div id="siteNotice">' +
+            '</div>' +
+            '<h1 id="firstHeading" class="firstHeading">Business News</h1>' +
+            '<div id="bodyContent">' +
+            '<p>Chinese market moving power was again demonstrated on Friday when some surprisingly strong inflation data particularly relating to higher factory gate prices buoyed sentiment that had been crushed the day before by weak trade figures Wall Street finished the week fairly flat helped by solid results from a couple of big banks, while Europe was stronger. But the mood did not reach Australia with futures trading pointing a fall on opening.</p>' +
+            '<p>Attribution: Business' +
+            '</div>' +
+            '</div>';
+
+            var contentString2 = '<div id="content" >' +
+            '<div id="siteNotice">' +
+            '</div>' +
+            '<h1 id="firstHeading" class="firstHeading">Sports News</h1>' +
+            '<div id="bodyContent">' +
+            '<p>Chinese market moving power was again demonstrated on Friday when some surprisingly strong inflation data particularly relating to higher factory gate prices buoyed sentiment that had been crushed the day before by weak trade figures Wall Street finished the week fairly flat helped by solid results from a couple of big banks, while Europe was stronger. But the mood did not reach Australia with futures trading pointing a fall on opening.</p>' +
+            '<p><b>View More:<b><a href="sportsindex.html">' +
+            'sportsindex.html</a> ' +
+            '</p>' +
+            '</div>' +
+            '</div>';
+
+            var contentString3 = '<div id="content" >' +
+            '<div id="siteNotice">' +
+            '</div>' +
+            '<h1 id="firstHeading" class="firstHeading">Entertainment News</h1>' +
+            '<div id="bodyContent">' +
+            '<p>Chinese market moving power was again demonstrated on Friday when some surprisingly strong inflation data particularly relating to higher factory gate prices buoyed sentiment that had been crushed the day before by weak trade figures Wall Street finished the week fairly flat helped by solid results from a couple of big banks, while Europe was stronger. But the mood did not reach Australia with futures trading pointing a fall on opening.</p>' +
+            '<p>Attribution: Business' +
+            '(last visited June 22, 2009).</p>' +
+            '</div>' +
+            '</div>';
+
+            var contentString4 = '<div id="content" >' +
+            '<div id="siteNotice">' +
+            '</div>' +
+            '<h1 id="firstHeading" class="firstHeading">Culture News</h1>' +
+            '<div id="bodyContent">' +
+            '<p>Chinese market moving power was again demonstrated on Friday when some surprisingly strong inflation data particularly relating to higher factory gate prices buoyed sentiment that had been crushed the day before by weak trade figures Wall Street finished the week fairly flat helped by solid results from a couple of big banks, while Europe was stronger. But the mood did not reach Australia with futures trading pointing a fall on opening.</p>' +
+            '<p>Attribution: Business' +
+            '(last visited June 22, 2009).</p>' +
+            '</div>' +
+            '</div>';
+
+            var contentString5 = '<div id="content" >' +
+            '<div id="siteNotice">' +
+            '</div>' +
+            '<h1 id="firstHeading" class="firstHeading">Life News</h1>' +
+            '<div id="bodyContent">' +
+            '<p>Chinese market moving power was again demonstrated on Friday when some surprisingly strong inflation data particularly relating to higher factory gate prices buoyed sentiment that had been crushed the day before by weak trade figures Wall Street finished the week fairly flat helped by solid results from a couple of big banks, while Europe was stronger. But the mood did not reach Australia with futures trading pointing a fall on opening.</p>' +
+            '<p>Attribution: Business' +
+            '(last visited June 22, 2009).</p>' +
+            '</div>' +
+            '</div>';
+
+            var secretMessages = [contentString1, contentString2, contentString3, contentString4, contentString5];
+            for (var i = 0; i < beaches.length; i++) {
+
+            var beach = beaches[i];
+            var marker = new google.maps.Marker({
+            position: { lat: beach[1], lng: beach[2] },
+            map: map,
+            icon:image[i],
+            shape: shape,
+            title: beach[0],
+            //zIndex: beach[3],
+            });
+            attachSecretMessage(marker, secretMessages[i]);
+
+      
+
+            //google.maps.event.addListener(marker, 'click', function () {
+            //    marker.info.open(map, marker);
+            //});
+            }
+
+
+
+
+
+
+    }
+
+
+
+    function attachSecretMessage(marker, secretMessage) {
+        var infowindow = new google.maps.InfoWindow({
+            content: secretMessage
+        });
+
+        marker.addListener('click', function () {
+            infowindow.open(marker.get('map'), marker);
+        });
+    }
+
+
+
+
+
+    function CenterControl(controlDiv, map) {
+
+        // Set CSS for the control border.
+        var controlUI = document.createElement('div');
+        controlUI.style.backgroundColor = '#fff';
+        controlUI.style.border = '2px solid #fff';
+        controlUI.style.borderRadius = '3px 0px 0px 3px';
+        controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+        controlUI.style.cursor = 'pointer';
+        controlUI.style.marginBottom = '20px';
+        //controlUI.style.marginTop = "80px";
+        //controlUI.style.marginLeft = "300";
+        controlUI.style.zIndex = "3000";
+        controlUI.style.textAlign = 'center';
+        controlUI.title = 'Click to recenter the map';
+        controlDiv.appendChild(controlUI);
+
+        // Set CSS for the control interior.
+        var controlText = document.createElement('div');
+        controlText.style.color = 'rgb(25,25,25)';
+        controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+        controlText.style.fontSize = '16px';
+        controlText.style.lineHeight = '38px';
+        controlText.style.paddingLeft = '5px';
+        controlText.style.paddingRight = '5px';
+        controlText.innerHTML = 'Return Australia';
+        controlUI.appendChild(controlText);
+
+        // Setup the click event listeners: simply set the map to Chicago.
+        controlUI.addEventListener('click', function () {
+            map.setCenter(australia);
+        });
+
+        }
+
+
+
+
+    </script>
+
+
+</head>
+
+<body  onload="load_map()" style="width:100%;height:100%;margin-left:0px;margin-top:0px;z-index:-200;background-color:#141414">
+
+        <div style="position:absolute;margin-top:400px;margin-left:10px">
+        <button class="float_button_explore" onclick="window.location.href='index_helen.html'" style="height:54px;width:54px"></button>      
+        </div>
+        <div style="position:absolute;margin-top:465px;margin-left:10px">
+        <button class="float_button_library" onclick="window.location.href='HtmlPage2.html'" style="height:54px;width:54px"></button> 
+        </div>
+        <div style="position:absolute;margin-top:530px;margin-left:10px">
+            <button class="float_button_quiz" onclick="window.location.href='new_post.html'" style=" height:54px;width:54px"></button>
+        </div>
+        <div style="position:absolute;margin-top:595px;margin-left:10px">
+        <button class="float_button_aboutus" onclick="window.location.href='HtmlPage3.html'" style="height:54px;width:54px"></button>
+        </div>
+        <div style="position:absolute; width: 100%; height:140px;background:white; z-index: 100;box-shadow:#000000,2px ">
+        <p style="font-family:'Segoe WP';font-size:17pt;font-weight:200;color:#1a1a1a;margin-top:90px;margin-left:40px">LOCALS NEWS DISTRIBUTOR</p>
+        <div style="width:200px;height:80px; margin-right:20px;float:right; margin-top:-80px">
+        <button class="button_1" onclick="window.location.href='index.html'" style="position:fixed; width:140px;border-radius:5px; height:40px;vertical-align:middle">LOG OUT</button>
+        </div >
+
+        
+        </div>
+        <div id="map" style="position:absolute; height:100%;width:100%;min-height:700px;z-index:-100;margin-top:0px">
+        </div>
+</body>
+
+</html>
